@@ -1,0 +1,4 @@
+CREATE TABLE lights (
+	id		INT NOT NULL,
+	identifier	VARCHAR(50) NOT NULL,
+);
