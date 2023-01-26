@@ -7,6 +7,7 @@ def main():
     while True:
         # Wait for user input
         input("Just slowing it down, this should be replaced with a connection to the JS frontend")
+        # TO DO: Just thought about that it should also listen on intern port, so I'd need to make the concurrent.
 
 
 
