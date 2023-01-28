@@ -1,0 +1,43 @@
+body {
+	display: flex;
+	flex-direction: column;
+	width: 800px;
+	height: 480px;
+	margin: 0;
+	padding: 0;
+}
+
+#header {
+	display: flex;
+	height: 6.25%;
+	width: 100%;
+	background-color: red;	
+	flex-direction: row;
+	justify-content: space-between;
+	font-size: x-large;
+}
+
+.head {
+	width: fit-content;
+	height: 100%
+}
+
+#body {
+	width: 100%;
+	height: 93.75%;
+	background-color: yellow;
+	display: flex;
+	flex-direction: row;
+}
+
+#lights {
+	background-color: grey;
+	width: 50%;
+	height: 100%;
+}
+
+#reminders {
+	background-color: blue;
+	width: 50%;
+	height: 100%;
+}
