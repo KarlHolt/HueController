@@ -5,16 +5,16 @@ body {
 	height: 480px;
 	margin: 0;
 	padding: 0;
+	font-size: x-large;
 }
 
 #header {
 	display: flex;
 	height: 6.25%;
 	width: 100%;
-	background-color: red;	
+	background-image: linear-gradient(#aaaa8f, #e3dfd7);
 	flex-direction: row;
 	justify-content: space-between;
-	font-size: x-large;
 }
 
 .head {
@@ -25,19 +25,41 @@ body {
 #body {
 	width: 100%;
 	height: 93.75%;
-	background-color: yellow;
 	display: flex;
 	flex-direction: row;
 }
 
 #lights {
-	background-color: grey;
+	width: 80%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+#wrap {
+	background-image: linear-gradient(to right,#e3dfd7, #efd2c1);
 	width: 50%;
 	height: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 #reminders {
-	background-color: blue;
+	background-image: linear-gradient(to right, #c2d2c6, #e3dfd7);
 	width: 50%;
 	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.reminder{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.light_wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
