@@ -1,9 +1,13 @@
 import os
 import requests
+from Light_protocol import HUEprotocol
 
 def main():
     user = get_user()
-    ip = "http://192.168.2.116"
+    ip = "http://192.168.2.116" # It is possible to find the bridge IP automatic
+    
+    protocol = HUEprotocol(ip, user)
+
     while True:
         # Wait for user input
         input("Just slowing it down, this should be replaced with a connection to the JS frontend")
@@ -18,6 +22,7 @@ def get_user(file_name="hidden_user.txt"):
             # Assumes that the username is on the first line of the file, doesn't care about the rest of the file content
             user = [line.strip() for line in file][0]
             print("logged in as:", user)
+            return user
     else:
         print("Couldn't find hidden user file")
         return ""
