@@ -1,6 +1,7 @@
 CREATE TABLE reminders (
 	reminder_id	SERIAL PRIMARY KEY,
-	description	varchar() NOT NULL,
+	title		varchar(20) NOT NULL,
+	description	varchar(),
 	alarm		timestamp NOT NULL,
 	repeat		varchar()
 );
