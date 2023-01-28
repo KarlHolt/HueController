@@ -1,4 +1,19 @@
+CREATE TABLE reminders (
+	reminder_id	SERIAL PRIMARY KEY,
+	description	varchar() NOT NULL,
+	alarm		timestamp NOT NULL,
+	repeat		varchar()
+);
+
+CREATE TABLE snoozed_reminders (
+	snooze_id	SERIAL PRIMARY KEY,
+	reminder_id	integer REFERENCES reminders ON DELETE CASCADE,
+	snooze_time	timestamp NOT NULL
+);
+
+
 CREATE TABLE lights (
-	id		INT NOT NULL,
+	id		INT,
 	identifier	VARCHAR(50) NOT NULL,
+	PRIMARY KEY (id)
 );
