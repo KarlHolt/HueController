@@ -3,7 +3,8 @@ CREATE TABLE reminders (
 	title		varchar(20) NOT NULL,
 	description	varchar,
 	alarm		timestamp NOT NULL,
-	repeat		varchar
+	repeat		varchar,
+	seen		boolean DEFAULT false
 );
 
 INSERT INTO reminders(title, description, alarm) 
@@ -18,7 +19,7 @@ VALUES ('Karens Fødelsdag', 'Karen, Rasmus og Kamilla kommer til fødelsdag', '
 
 CREATE TABLE snoozed_reminders (
 	snooze_id	SERIAL PRIMARY KEY,
-	reminder_id	integer REFERENCES reminders ON DELETE CASCADE,
+	reminder_id	integer REFERENCES reminders ON DELETE CASCADE NOT NULL,
 	snooze_time	timestamp NOT NULL
 );
 

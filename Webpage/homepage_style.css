@@ -6,6 +6,7 @@ body {
 	margin: 0;
 	padding: 0;
 	font-size: x-large;
+	overflow: hidden;
 }
 
 #header {
@@ -62,4 +63,8 @@ body {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+}
+
+.ran_out {
+	color: red;
 }

@@ -60,7 +60,15 @@ function add_reminder(description, timestamp){
 	choosen_obj.appendChild(time_div);
 
 	desp_div.innerHTML = description;
-	time_div.innerHTML = pad(timestamp.getDate(),2) + "/" + pad((timestamp.getMonth() + 1),2).toString() + " - " + pad(timestamp.getHours(),2) + ":"+ pad(timestamp.getMinutes(),2);
+
+    now = new Date()
+
+    time_div.innerHTML = pad(timestamp.getDate(),2) + "/" + pad((timestamp.getMonth() + 1),2).toString() + " - " + pad(timestamp.getHours(),2) + ":"+ pad(timestamp.getMinutes(),2);
+    if(now > timestamp){
+        time_div.classList = ["ran_out"]
+    }
+
+
 
 	choosen_obj.classList = ["reminder"]
 
