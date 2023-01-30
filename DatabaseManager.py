@@ -6,6 +6,7 @@ class database_protocol:
         self.buffer_size = buffer_size
         self.username = username
         self.database = database
+        self.up_to_date = False
 
         self.fill_reminders()
 
@@ -35,6 +36,7 @@ class database_protocol:
                     else:
                         self.reminders.append(temp.pop(0))
                     i+=1
+                self.up_to_date = True
     
     def snooze_reminder(self, reminder_id, new_snooze_time):
         with psycopg.connect("dbname={database} user={username}".format(database=self.database, username=self.username)) as conn:
@@ -43,6 +45,7 @@ class database_protocol:
                 cur.execute("INSERT INTO snoozed_reminders(reminder_id, snooze_time) VALUES(%s, %s)", (reminder_id, new_snooze_time))
 
                 conn.commit()
+                self.up_to_date = False
 
     def add_reminder(self, title, description, alarm, repeat):
         with psycopg.connect("dbname={database} user={username}".format(database=self.database, username=self.username)) as conn:
@@ -50,6 +53,7 @@ class database_protocol:
                 cur.execute("INSERT INTO reminders(title, description, alarm, repeat) VALUES(%s, %s, %s, %s)", (title, description, alarm, repeat))
 
                 conn.commit()
+                self.up_to_date = False
 
     def seen_reminder(self, reminder_id):
         with psycopg.connect("dbname={database} user={username}".format(database=self.database, username=self.username)) as conn:
@@ -57,6 +61,7 @@ class database_protocol:
                 cur.execute("UPDATE reminders SET seen = true WHERE reminder_id = %s", (reminder_id))
 
                 conn.commit()
+                self.up_to_date = False
 
     def seen_snooze(self, snooze_id):
         with psycopg.connect("dbname={database} user={username}".format(database=self.database, username=self.username)) as conn:
@@ -64,6 +69,8 @@ class database_protocol:
                 cur.execute("DELETE FROM snoozed_reminders WHERE snooze_id = %s", (snooze_id))
 
                 conn.commit()
+                self.up_to_date = False
+
 
 db_d = database_protocol(10, "test123", "postgres")
 print(db_d.reminders)
