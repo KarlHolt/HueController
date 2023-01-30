@@ -51,5 +51,19 @@ class database_protocol:
 
                 conn.commit()
 
+    def seen_reminder(self, reminder_id):
+        with psycopg.connect("dbname={database} user={username}".format(database=self.database, username=self.username)) as conn:
+            with conn.cursor() as cur:
+                cur.execute("UPDATE reminders SET seen = true WHERE reminder_id = %s", (reminder_id))
+
+                conn.commit()
+
+    def seen_snooze(self, snooze_id):
+        with psycopg.connect("dbname={database} user={username}".format(database=self.database, username=self.username)) as conn:
+            with conn.cursor() as cur:
+                cur.execute("DELETE FROM snoozed_reminders WHERE snooze_id = %s", (snooze_id))
+
+                conn.commit()
+
 db_d = database_protocol(10, "test123", "postgres")
 print(db_d.reminders)
