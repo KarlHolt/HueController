@@ -9,6 +9,61 @@ body {
 	overflow: hidden;
 }
 
+#reminder_description {
+	background-image: linear-gradient(to right, #c9bea5, #e1d7d7);
+	position: absolute;
+	background-color: yellow;
+	top: 10%;
+	left: 10%;
+	height: 80%;
+	width: 80%;
+	flex-direction: column;
+}
+#description_title {
+	background-image: linear-gradient(to right, #ff6501, #e1d7d7);
+	height: 2em;
+	width: 100%;
+	justify-content: center;
+	margin: auto;
+}
+#description_time {
+	background-image: linear-gradient(to right, #2d2834, #e1d7d7);
+	height: 2em;
+	width: 100%;
+	justify-content: space-evenly;
+}
+.time_folder {
+	margin: auto;
+}
+.time {
+	height: 1em;
+	width: 1em;
+	margin-right: 2px;
+	background-color: whitesmoke;
+	justify-content: center;
+}
+#description_desp {
+	overflow: hidden;
+	height: 62.5%;
+	width: 100%;
+}
+#description_buttons{
+	height: 2em;
+	width: 96%;
+	justify-content: space-between;
+	margin: 0 2% 0 2%;
+}
+.hide {
+	display: none;
+}
+.flex {
+	display: flex;
+}
+.button {
+	background-image: linear-gradient(to right, #2d2834, #e1d7d7);
+	height: min-content;
+}
+
 #header {
 	display: flex;
 	height: 6.25%;

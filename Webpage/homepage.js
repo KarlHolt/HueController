@@ -7,6 +7,29 @@ function update_clock(){
     document.getElementById("timestamp").innerHTML = pad(days,2) + "/" + pad((d.getMonth() + 1),2).toString() + " - " + pad(hours,2) + ":" + pad(minutes,2) + ":" + pad(seconds,2);
 }
 
+document.getElementById("close").addEventListener("click", () => {
+    let hidden = document.getElementsByClassName("flex");
+    const lengt = hidden.length
+    for(let i = lengt - 1; i >= 0; i -= 1){
+        hidden[i].className = hidden[i].className.replace(/flex/, 'hide');
+    }
+});
+
+document.getElementById("close_save").addEventListener("click", () => {
+    hidden_text = document.getElementById("description_title").innerHTML.split("<!--")[1];
+    
+    hidden_text = hidden_text.replace("-->", "");
+    hidden_messages = hidden_text.split(";)(:");
+
+    console.log(hidden_messages);
+
+    let hidden = document.getElementsByClassName("flex");
+    const lengt = hidden.length
+    for(let i = lengt - 1; i >= 0; i -= 1){
+        hidden[i].className = hidden[i].className.replace(/flex/, 'hide');
+    }
+});
+
 update_clock();
 setInterval(update_clock, 1000);
 
@@ -48,7 +71,7 @@ function add_light(name, id, on){
     document.getElementById("lights").appendChild(wrapper);
 }
 
-function add_reminder(description, timestamp){
+function add_reminder(title, snooze_or_reminder, id, description, timestamp){
 	/* 	Timestamp is expected to be of type Date 
 		description is just a string
 	*/	
@@ -59,7 +82,7 @@ function add_reminder(description, timestamp){
 	choosen_obj.appendChild(desp_div);
 	choosen_obj.appendChild(time_div);
 
-	desp_div.innerHTML = description;
+	desp_div.innerHTML = title + "<!--" + (snooze_or_reminder ? "Reminder" : "Snozer")+ ";)(:" + id + "-->";
 
     now = new Date()
 
@@ -68,9 +91,35 @@ function add_reminder(description, timestamp){
         time_div.classList = ["ran_out"]
     }
 
-
-
 	choosen_obj.classList = ["reminder"]
+
+    choosen_obj.addEventListener("click", () => {
+        let hidden = document.getElementsByClassName("hide");
+        const lengt = hidden.length
+        for(let i = lengt - 1; i >= 0; i -= 1){
+            hidden[i].className = hidden[i].className.replace(/hide/, 'flex');
+        }
+
+        document.getElementById("description_title").innerHTML = desp_div.innerHTML;
+        document.getElementById("description_desp").innerHTML = description;
+
+        document.getElementById("year1000").innerHTML = Math.floor(timestamp.getFullYear()/1000);
+        document.getElementById("year100").innerHTML = Math.floor(timestamp.getFullYear()/100) % 10;
+        document.getElementById("year10").innerHTML = Math.floor(timestamp.getFullYear()/10) % 10;
+        document.getElementById("year1").innerHTML = timestamp.getFullYear() % 10;
+
+        document.getElementById("month10").innerHTML = Math.floor((timestamp.getMonth() + 1)/10) % 10;
+        document.getElementById("month1").innerHTML = (timestamp.getMonth() + 1) % 10;
+
+        document.getElementById("day10").innerHTML = Math.floor(timestamp.getDate()/10) % 10;
+        document.getElementById("day1").innerHTML = timestamp.getDate() % 10;
+
+        document.getElementById("hour10").innerHTML = Math.floor(timestamp.getHours()/10) % 10;
+        document.getElementById("hour1").innerHTML = timestamp.getHours() % 10;
+
+        document.getElementById("min10").innerHTML = Math.floor(timestamp.getMinutes()/10) % 10;
+        document.getElementById("min1").innerHTML = timestamp.getMinutes() % 10;
+    });
 
 	document.getElementById("reminders").appendChild(choosen_obj);
 }
